@@ -1,7 +1,7 @@
 # Etapa base: PHP con extensiones necesarias
 FROM php:8.2-fpm
 
-# Instalar dependencias del sistema
+# Instalar dependencias del sistema (las mismas)
 RUN apt-get update && apt-get install -y \
     git zip unzip curl libpng-dev libonig-dev libxml2-dev libzip-dev npm \
     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
@@ -15,22 +15,25 @@ WORKDIR /var/www/html
 # Copiar los archivos del proyecto
 COPY . .
 
-# Instalar dependencias PHP (sin las de desarrollo)
+# 1. Instalar dependencias PHP (sin las de desarrollo)
 RUN composer install --no-dev --optimize-autoloader
 
-# Instalar dependencias JS y compilar si usas Vite o Tailwind
-RUN npm install && npm run build || echo "No frontend build step"
+# 2. Instalar dependencias JS
+RUN npm install
 
-# Generar clave de aplicación (no falla si ya existe)
+# 3. Compilar los assets de frontend (usamos '|| true' para evitar que falle el build si 'npm run build' no es estrictamente necesario o tiene errores menores)
+RUN npm run build || true
+
+# 4. Generar clave de aplicación (si no está definida en ENV)
 RUN php artisan key:generate || true
 
-# Cachear configuración y rutas para mejor rendimiento
+# 5. Cachear configuración y rutas
 RUN php artisan config:cache && php artisan route:cache || true
 
 # Asignar permisos a storage y bootstrap
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Exponer el puerto dinámico que Render usa
+# Exponer el puerto
 EXPOSE 10000
 
 # Comando para iniciar Laravel
