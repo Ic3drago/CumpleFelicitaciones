@@ -1,7 +1,7 @@
-# Usar imagen base con PHP 8.2
-FROM php:8.2-cli
+# Usa la imagen base con PHP 8.2 y FPM
+FROM php:8.2-fpm
 
-# Instalar dependencias del sistema
+# Instalar dependencias del sistema (incluyendo Nginx)
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     zip \
     unzip \
+    nginx \
     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -43,31 +44,25 @@ COPY . .
 # Instalar dependencias de desarrollo de npm solo para el build
 RUN npm install --save-dev && npm run build
 
-# Crear directorios necesarios y establecer permisos
-RUN mkdir -p storage/framework/{sessions,views,cache} \
-    && mkdir -p storage/logs \
-    && mkdir -p bootstrap/cache \
-    && chmod -R 775 storage bootstrap/cache
-
 # Limpiar cache de npm para reducir tamaño
 RUN npm cache clean --force \
     && rm -rf node_modules
 
-# Exponer puerto 10000 (Render usa este puerto)
-EXPOSE 10000
+# Copiar configuraciones personalizadas (Paso 2)
+COPY ./docker-config/nginx.conf /etc/nginx/sites-available/default
+COPY ./docker-config/php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
+COPY ./docker-config/start.sh /usr/local/bin/start.sh
 
-# Script de inicio integrado en el CMD
-CMD echo "🚀 Iniciando aplicación Laravel..." && \
-    echo "⏳ Esperando base de datos..." && \
-    sleep 10 && \
-    echo "🔧 Limpiando cache..." && \
-    php artisan config:clear && \
-    php artisan cache:clear && \
-    php artisan view:clear && \
-    php artisan route:clear && \
-    echo "📦 Ejecutando migraciones..." && \
-    php artisan migrate --force && \
-    echo "🔗 Creando storage link..." && \
-    php artisan storage:link || true && \
-    echo "✅ Iniciando servidor en puerto 10000..." && \
-    php artisan serve --host=0.0.0.0 --port=10000
+# Crear directorios necesarios y establecer permisos
+RUN mkdir -p storage/framework/{sessions,views,cache} \
+    && mkdir -p storage/logs \
+    && mkdir -p bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache \
+    && chmod +x /usr/local/bin/start.sh \
+    && chown -R www-data:www-data /var/www/html
+
+# Exponer puerto 80 (Nginx)
+EXPOSE 80
+
+# Comando de inicio
+CMD ["/usr/local/bin/start.sh"]
