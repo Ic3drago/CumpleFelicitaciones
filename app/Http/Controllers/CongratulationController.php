@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers; // <-- Corregido (usaba '-')
+namespace App\Http\Controllers;
 
-use Illuminate\Http\Request; // <-- Corregido
-use App\Models\Congratulation; // <-- Corregido
-use Illuminate\Support\Str; // <-- Corregido
-use Illuminate\Support\Facades\Mail; // <-- Corregido
-use App\Mail\NuevaFelicitacionMail; // <-- Corregido
-use Illuminate\Support\Facades\Log; // <-- Corregido
+use Illuminate\Http\Request;
+use App\Models\Congratulation;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NuevaFelicitacionMail;
+use Illuminate\Support\Facades\Log;
 
 class CongratulationController extends Controller
 {
@@ -20,7 +20,12 @@ class CongratulationController extends Controller
             'name' => $request->name,
             'identificador' =>$request->identificador,
             'description' => $request->description,
-            'status' => 1, // 1 = Pendiente de aprobación
+            
+            // --- ¡CAMBIO REALIZADO! ---
+            // Ahora se aprueba automáticamente
+            'status' => 2, 
+            // --- FIN DEL CAMBIO ---
+
             'img' => null, // Inicia 'img' como nulo por si falla
         ];
 
