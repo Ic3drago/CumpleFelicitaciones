@@ -1,7 +1,7 @@
-# Usa la imagen base con PHP 8.2 y FPM
-FROM php:8.2-fpm
+# Usar imagen base con PHP 8.2
+FROM php:8.2-cli
 
-# Instalar dependencias del sistema (incluyendo Nginx)
+# Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -11,7 +11,6 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     zip \
     unzip \
-    nginx \
     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -44,29 +43,29 @@ COPY . .
 # Instalar dependencias de desarrollo de npm solo para el build
 RUN npm install --save-dev && npm run build
 
-# Limpiar cache de npm para reducir tamaño
-RUN npm cache clean --force \
-    && rm -rf node_modules
-
-# Copiar configuraciones personalizadas
-COPY ./docker-config/nginx.conf /etc/nginx/sites-available/default
-COPY ./docker-config/php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
-COPY ./docker-config/start.sh /usr/local/bin/start.sh
-
-# --- INICIO DE LA CORRECCIÓN 502 ---
 # Crear directorios necesarios y establecer permisos
 RUN mkdir -p storage/framework/{sessions,views,cache} \
     && mkdir -p storage/logs \
     && mkdir -p bootstrap/cache \
-    && mkdir -p /var/run/php \
-    && chmod -R 775 storage bootstrap/cache \
-    && chown -R www-data:www-data /var/www/html \
-    && chown -R www-data:www-data /var/run/php \
-    && chmod +x /usr/local/bin/start.sh
-# --- FIN DE LA CORRECCIÓN 502 ---
+    && chmod -R 775 storage bootstrap/cache
 
-# Exponer puerto 80 (Nginx)
-EXPOSE 80
+# Limpiar cache de npm para reducir tamaño
+RUN npm cache clean --force \
+    && rm -rf node_modules
 
-# Comando de inicio
-CMD ["/usr/local/bin/start.sh"]
+# Exponer puerto 10000 (Render usa este puerto)
+EXPOSE 10000
+
+# Script de inicio integrado en el CMD
+CMD echo "🚀 Iniciando aplicación Laravel (modo simple)..." && \
+    echo "🔧 Limpiando cache..." && \
+    php artisan config:clear && \
+    php artisan cache:clear && \
+    php artisan view:clear && \
+    php artisan route:clear && \
+    echo "📦 Ejecutando migraciones..." && \
+    php artisan migrate --force && \
+    echo "🔗 Creando storage link..." && \
+    php artisan storage:link || true && \
+    echo "✅ Iniciando servidor en puerto 10000..." && \
+    php artisan serve --host=0.0.0.0 --port=10000
