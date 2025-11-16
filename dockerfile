@@ -48,18 +48,22 @@ RUN npm install --save-dev && npm run build
 RUN npm cache clean --force \
     && rm -rf node_modules
 
-# Copiar configuraciones personalizadas (Paso 2)
+# Copiar configuraciones personalizadas
 COPY ./docker-config/nginx.conf /etc/nginx/sites-available/default
 COPY ./docker-config/php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
 COPY ./docker-config/start.sh /usr/local/bin/start.sh
 
+# --- INICIO DE LA CORRECCIÓN 502 ---
 # Crear directorios necesarios y establecer permisos
 RUN mkdir -p storage/framework/{sessions,views,cache} \
     && mkdir -p storage/logs \
     && mkdir -p bootstrap/cache \
+    && mkdir -p /var/run/php \
     && chmod -R 775 storage bootstrap/cache \
-    && chmod +x /usr/local/bin/start.sh \
-    && chown -R www-data:www-data /var/www/html
+    && chown -R www-data:www-data /var/www/html \
+    && chown -R www-data:www-data /var/run/php \
+    && chmod +x /usr/local/bin/start.sh
+# --- FIN DE LA CORRECCIÓN 502 ---
 
 # Exponer puerto 80 (Nginx)
 EXPOSE 80

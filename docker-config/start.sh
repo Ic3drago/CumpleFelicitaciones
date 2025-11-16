@@ -21,6 +21,11 @@ fi
 echo "✅ Iniciando PHP-FPM..."
 php-fpm -D
 
+# --- INICIO DE LA CORRECCIÓN 502 ---
+# Esperar 2 segundos para que se cree el socket
+sleep 2
+# --- FIN DE LA CORRECCIÓN 502 ---
+
 # Iniciar Nginx en primer plano (esto mantiene el contenedor vivo)
 echo "✅ Iniciando Nginx..."
 nginx -g "daemon off;"
