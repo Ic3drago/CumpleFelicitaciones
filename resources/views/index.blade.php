@@ -33,7 +33,7 @@
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
             <a href="" class="logo d-flex align-items-center">
-                <h1>LOGO<span>.</span></h1>
+                <h1>CUMPLE<span>.</span></h1>
             </a>
 
             <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
@@ -55,10 +55,10 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-6 text-center">
-                        <h2 data-aos="fade-down">Feliz Cumpleaños <span>Nombre</span></h2>
-                        <p data-aos="fade-up">Lorem ipsum dolor sit amet consectetur adipiscing elit congue sed,
-                            porttitor purus maecenas aliquam urna pretium nostra interdum morbi risus, in orci feugiat
-                            sociis habitant nulla vulputate accumsan.
+                        <h2 data-aos="fade-down">Feliz Cumpleaños <span>Ninel</span></h2>
+                        <p data-aos="fade-up">En este gran día te deseo todo lo mejor, espero que sea de tu agrado esta pagina que te diseñe
+                            para que te sientas y sepas que eres muy importante para mi y para todos los que te mandaran felicitaciones en tu dia
+                            te quiero y te deseo lo mejor me encantas y te amo.
                         </p>
                         <a data-aos="fade-up" data-aos-delay="200" href="#felicitaciones"
                             class="btn-get-started">Felicidades</a>
@@ -70,11 +70,11 @@
         <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
 
             <div class="carousel-item active"
-                style="background-image: url(/assets/img/hero-carousel/fondo-principal.jpeg)">
+                style="background-image: url(/assets/img/hero-carousel/fondo4.jpg)">
             </div>
-            <div class="carousel-item" style="background-image: url(/assets/img/hero-carousel/fondo-principal.jpeg)">
+            <div class="carousel-item" style="background-image: url(/assets/img/hero-carousel/fondo2.jpeg)">
             </div>
-            <div class="carousel-item" style="background-image: url(/assets/img/hero-carousel/fondo-principal.jpeg)">
+            <div class="carousel-item" style="background-image: url(/assets/img/hero-carousel/foto3.jpeg)">
             </div>
             <div class="carousel-item" style="background-image: url(/assets/img/hero-carousel/fondo-principal.jpeg)">
             </div>
@@ -140,24 +140,30 @@
 
                         <li class="nav-item col-3">
                             <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#tab-1">
-                                <h4><b>T</b>itulo uno</h4>
+                                <h4><b>P</b>oemas que te gustan</h4>
                             </a>
                         </li>
 
                         <li class="nav-item col-3">
                             <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-2">
-                                <h4><b>T</b>itulo dos</h4>
+                                <h4><b>T</b>E AMO MUCHO</h4>
                             </a>
 
                         <li class="nav-item col-3">
                             <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-3">
-                                <h4><b>T</b>itulo tres</h4>
+                                <h4><b>E</b>l helado de esa vez...</h4>
                             </a>
                         </li>
 
                         <li class="nav-item col-3">
                             <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-4">
-                                <h4><b>T</b>itulo cuatro</h4>
+                                <h4><b>N</b>ose que titulo poner jajaj</h4>
+                            </a>
+                        </li>
+
+                        <li class="nav-item col-3">
+                            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-5">
+                                <h4><b>U</b>no de los videos que tengo</h4>
                             </a>
                         </li>
 
@@ -168,21 +174,16 @@
                             <div class="row">
                                 <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center"
                                     data-aos="fade-up" data-aos-delay="100">
-                                    <h3>Titulo uno</h3>
+                                    <h3>Nose si te gute o si recuerdo de los que aun te escribia</h3>
                                     <p>
-                                        Lorem ipsum dolor sit amet consectetur adipiscing elit congue sed, porttitor
-                                        purus maecenas aliquam urna pretium nostra interdum morbi risus, in orci feugiat
-                                        sociis habitant nulla vulputate accumsan. Leo aptent blandit dictumst massa dis
-                                        rutrum proin ultricies lacus orci, molestie quis habitasse cursus lacinia
-                                        convallis iaculis luctus inceptos, tempus facilisis rhoncus tortor morbi
-                                        eleifend nisl at habitant. Magna facilisi elementum ac enim quis venenatis morbi
-                                        nascetur aenean leo, primis cursus auctor urna gravida maecenas massa eu
-                                        sollicitudin.
+                                        "La felicidad somos tu y yo y ya sabra la despues la vida, No de dejes que no lo sepa,
+                                        No me dejes, que se me olvida.", No recuerdo muy bien si te dedique este cuando empezamos a salir
+                                        (aun sigo buscando ese cuaderno waaaa)
                                     </p>
                                 </div>
                                 <div class="col-lg-6 order-1 order-lg-2 text-center" data-aos="fade-up"
                                     data-aos-delay="200">
-                                    <img src="/assets/img/foto.jpeg" alt="" class="img-fluid">
+                                    <img src="/assets/img/foto1.jpg" alt="" class="img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -191,20 +192,18 @@
                             <div class="row">
                                 <div
                                     class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
-                                    <h3>Titulo dos</h3>
+                                    <h3>Creo que este lo escribi en unos de tus cuadernos que te quite jsjsj</h3>
                                     <p>
-                                        Lorem ipsum dolor sit amet consectetur adipiscing elit congue sed, porttitor
-                                        purus maecenas aliquam urna pretium nostra interdum morbi risus, in orci feugiat
-                                        sociis habitant nulla vulputate accumsan. Leo aptent blandit dictumst massa dis
-                                        rutrum proin ultricies lacus orci, molestie quis habitasse cursus lacinia
-                                        convallis iaculis luctus inceptos, tempus facilisis rhoncus tortor morbi
-                                        eleifend nisl at habitant. Magna facilisi elementum ac enim quis venenatis morbi
-                                        nascetur aenean leo, primis cursus auctor urna gravida maecenas massa eu
-                                        sollicitudin.
+                                        "Quiero puntos seguidos en los ratos de alegria, y puntos finales en tu adios.
+                                        Quiero laberintos sin salida en las calles de tus deseos.
+                                        Quiero ser la ultima silaba de tu invierno y la primera de tu historia,
+                                        conmigo....."(como voy recordando estos poemas xd) no se que decirte porque
+                                        me quedo corto de palabaras al solo pensar en ti podria contar miles de historias que tuvimos
+                                        juntos pero en solo pensar en eso es pensar que no te quiero perder nunca.
                                     </p>
                                 </div>
                                 <div class="col-lg-6 order-1 order-lg-2 text-center">
-                                    <img src="/assets/img/foto.jpeg" alt="" class="img-fluid">
+                                    <img src="/assets/img/foto2.jpeg" alt="" class="img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -213,20 +212,17 @@
                             <div class="row">
                                 <div
                                     class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
-                                    <h3>Titulo tres</h3>
+                                    <h3>Porque esperas?</h3>
                                     <p>
-                                        Lorem ipsum dolor sit amet consectetur adipiscing elit congue sed, porttitor
-                                        purus maecenas aliquam urna pretium nostra interdum morbi risus, in orci feugiat
-                                        sociis habitant nulla vulputate accumsan. Leo aptent blandit dictumst massa dis
-                                        rutrum proin ultricies lacus orci, molestie quis habitasse cursus lacinia
-                                        convallis iaculis luctus inceptos, tempus facilisis rhoncus tortor morbi
-                                        eleifend nisl at habitant. Magna facilisi elementum ac enim quis venenatis morbi
-                                        nascetur aenean leo, primis cursus auctor urna gravida maecenas massa eu
-                                        sollicitudin.
+                                        "Porque esperas que caminemos en terreno plano si siempre hemos sido torbellino,
+                                        terraceria con subidas y bajadas, y curvas peligrosas, con cimas y precipicios,
+                                        llenos de fuego, de vida. Que no vez que el universo, al igual que tu y yo, amor,
+                                        es un bello e intenso...... caos?." la mayoria de poemas que te dedicaba eran por una razon 
+                                        y esa razon eras y seguiras siendo tu mi gran amor.
                                     </p>
                                 </div>
                                 <div class="col-lg-6 order-1 order-lg-2 text-center">
-                                    <img src="/assets/img/foto.jpeg" alt="" class="img-fluid">
+                                    <img src="/assets/img/foto3.jpg" alt="" class="img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -235,20 +231,39 @@
                             <div class="row">
                                 <div
                                     class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
-                                    <h3>Titulo cuatro</h3>
+                                    <h3>Hay tantas cosas de ti...</h3>
                                     <p>
-                                        Lorem ipsum dolor sit amet consectetur adipiscing elit congue sed, porttitor
-                                        purus maecenas aliquam urna pretium nostra interdum morbi risus, in orci feugiat
-                                        sociis habitant nulla vulputate accumsan. Leo aptent blandit dictumst massa dis
-                                        rutrum proin ultricies lacus orci, molestie quis habitasse cursus lacinia
-                                        convallis iaculis luctus inceptos, tempus facilisis rhoncus tortor morbi
-                                        eleifend nisl at habitant. Magna facilisi elementum ac enim quis venenatis morbi
-                                        nascetur aenean leo, primis cursus auctor urna gravida maecenas massa eu
-                                        sollicitudin.
+                                        "Hay tantas cosas de ti, amor, que no se, que no puedo responder,
+                                        que no comprendo y que probablemente nunca comprendere,
+                                        pero vivo con una certeza: aun me quedan universos, galaxias y estrellas
+                                        que solo conquistaré si tu te quedas, que solo descubrire si peleas conmigo y no contra mi..."
+                                        con esto acabo lo que queria decirte no soy bueno en esta cosa de hablar y quien se tomo 
+                                        el tiempo de leer hasta aca (pos chido pero deja de ser curioso deja de espiar mi pagina web jaja
+                                        solo pon las felicitaciones en la parte de felicitar), y si eres Ninel perdi un video que queria poner aca el
+                                        de que te hice montar un caballo jajaj.
                                     </p>
                                 </div>
                                 <div class="col-lg-6 order-1 order-lg-2 text-center">
-                                    <img src="/assets/img/foto.jpeg" alt="" class="img-fluid">
+                                    <img src="/assets/img/foto4.jpg" alt="" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="tab-5">
+                            <div class="row">
+                                <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+                                    <h3>Recuerdo aun cuando tenias mucho tiempo</h3>
+                                    <p>
+                                        Extraño esos dias donde no nos preocupabamos de literalmente el tiempo,
+                                        Teníamos todo el dia juntos y aun mas que todo cuando nos poniamos a leer libros en la plaza
+                                        y la gente nos miraba jajaj todo un mame espero que te guste esta pagina te quiero pasala bien en tu dia amor.
+                                    </p>
+                                </div>
+                                <div class="col-lg-6 order-1 order-lg-2 text-center">
+                                    <video controls autoplay muted loop class="img-fluid" style="width: 100%; height: auto;">
+                                        <source src="/assets/img/video1.mp4" type="video/mp4">
+                                        Tu navegador no soporta la reproducción de video.
+                                    </video>
                                 </div>
                             </div>
                         </div>
@@ -265,9 +280,9 @@
 
                         <div class="col-lg-4 col-md-6">
                             <div class="footer-info">
-                                <h3>Nombre</h3>
-                                <strong>Telefono:</strong> Telefono<br>
-                                <strong>Email:</strong> ejemplo@email.com<br>
+                                <h3>Benja</h3>
+                                <strong>Telefono:</strong> 76402452<br>
+                                <strong>Email:</strong> avilagarciabenjamin@gmail.com<br>
                                 </p>
                             </div>
                         </div>
@@ -301,10 +316,10 @@
             <div class="footer-legal text-center position-relative">
                 <div class="container">
                     <div class="copyright">
-                        &copy; Copyright <strong><span>Nombre</span></strong>. All Rights Reserved
+                        &copy; Copyright <strong><span>benja</span></strong>. All Rights Reserved
                     </div>
                     <div class="credits">
-                        Designed by <a>Rodrigo Trejo</a> Distributed by <a>Alfraber</a>
+                        Designed by <a>Rodrigo Trejo</a> Distributed by benja<a>Alfraber</a>
                     </div>
                 </div>
             </div>

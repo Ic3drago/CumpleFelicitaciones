@@ -15,6 +15,7 @@ services:
         value: false
       - key: DB_CONNECTION
         value: pgsql
+      # Database configuration from Render
       - key: DB_HOST
         fromDatabase:
           name: myapp_db

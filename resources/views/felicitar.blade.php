@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Felicitar - Nombre</title>
+  <title>Felicitar - Ninel</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -39,7 +39,7 @@
       <a href="" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>LOGO<span>.</span></h1>
+        <h1>CUMPLE<span>.</span></h1>
       </a>
 
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
@@ -99,9 +99,9 @@
 
       <div class="carousel-item active" style="background-image: url(assets/img/hero-carousel/fondo-principal.jpeg)">
       </div>
-      <div class="carousel-item" style="background-image: url(assets/img/hero-carousel/fondo-principal.jpeg)"></div>
-      <div class="carousel-item" style="background-image: url(assets/img/hero-carousel/fondo-principal.jpeg)"></div>
-      <div class="carousel-item" style="background-image: url(assets/img/hero-carousel/fondo-principal.jpeg)"></div>
+      <div class="carousel-item" style="background-image: url(assets/img/hero-carousel/fondo2.jpeg)"></div>
+      <div class="carousel-item" style="background-image: url(assets/img/hero-carousel/fondo4.jpg)"></div>
+      <div class="carousel-item" style="background-image: url(assets/img/hero-carousel/foto3.jpeg)"></div>
 
       <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
         <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
