@@ -15,6 +15,12 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# --- NUEVO: AUMENTAR LÍMITE DE SUBIDA A 50MB ---
+RUN echo "upload_max_filesize = 50M" > /usr/local/etc/php/conf.d/uploads.ini \
+    && echo "post_max_size = 50M" >> /usr/local/etc/php/conf.d/uploads.ini \
+    && echo "memory_limit = 256M" >> /usr/local/etc/php/conf.d/uploads.ini
+# -----------------------------------------------
+
 # Instalar Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
@@ -27,45 +33,40 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
 # Establecer directorio de trabajo
 WORKDIR /var/www/html
 
-# Copiar archivos de configuración de dependencias primero (para cache)
+# Copiar archivos de configuración
 COPY composer.json composer.lock ./
 COPY package.json package-lock.json ./
 
-# Instalar dependencias de PHP (sin dev)
+# Instalar dependencias de PHP
 RUN composer install --no-dev --no-scripts --no-interaction --optimize-autoloader
 
 # Instalar dependencias de Node
 RUN npm ci --only=production
 
-# Copiar todo el código de la aplicación
+# Copiar código
 COPY . .
 
-# Instalar dependencias de desarrollo de npm solo para el build
+# Build de assets
 RUN npm install --save-dev && npm run build
 
-# Crear directorios necesarios y establecer permisos
+# Permisos
 RUN mkdir -p storage/framework/{sessions,views,cache} \
     && mkdir -p storage/logs \
     && mkdir -p bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache
 
-# Limpiar cache de npm para reducir tamaño
+# Limpiar npm
 RUN npm cache clean --force \
     && rm -rf node_modules
 
-# Exponer puerto 10000 (Render usa este puerto)
+# Puerto
 EXPOSE 10000
 
-# Script de inicio integrado en el CMD
-CMD echo "🚀 Iniciando aplicación Laravel (modo simple)..." && \
-    echo "🔧 Limpiando cache..." && \
+# Comando de inicio (incluye limpieza de caché)
+CMD echo "🚀 Iniciando servidor..." && \
     php artisan config:clear && \
     php artisan cache:clear && \
-    php artisan view:clear && \
     php artisan route:clear && \
-    echo "📦 Ejecutando migraciones..." && \
     php artisan migrate --force && \
-    echo "🔗 Creando storage link..." && \
     php artisan storage:link || true && \
-    echo "✅ Iniciando servidor en puerto 10000..." && \
     php artisan serve --host=0.0.0.0 --port=10000

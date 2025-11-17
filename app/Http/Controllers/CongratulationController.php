@@ -21,8 +21,8 @@ class CongratulationController extends Controller
             'name' => 'required|string|max:255',
             'identificador' => 'required|string|max:255',
             'description' => 'required|string',
-            // Acepta jpg, png, gif, webp Y TAMBIÉN mp4, mov, avi, webm. Máximo 20MB (20480 KB)
-            'imagen' => 'nullable|file|mimes:jpeg,png,jpg,gif,webp,mp4,mov,avi,webm|max:20480',
+            // Acepta jpg, png, gif, webp Y TAMBIÉN mp4, mov, avi, webm. Máximo 50MB (51200 KB)
+            'imagen' => 'nullable|file|mimes:jpeg,png,jpg,gif,webp,mp4,mov,avi,webm|max:51200',
         ]);
         
         $datosParaGuardar = [
