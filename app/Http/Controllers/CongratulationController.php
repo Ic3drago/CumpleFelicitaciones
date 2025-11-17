@@ -32,17 +32,29 @@ class CongratulationController extends Controller
             'img' => null, 
         ];
 
-        // --- LÓGICA DE CLOUDINARY ---
+        // --- LÓGICA DE CLOUDINARY INTELIGENTE ---
         if ($request->hasFile("imagen")) {
             try {
-                // Sube el archivo a Cloudinary y lo fuerza a MP4 si es video
+                $file = $request->file('imagen');
+                
+                // Definimos las opciones básicas para Cloudinary
+                $opcionesCloudinary = [
+                    'folder' => 'felicitaciones-ninel', 
+                    'resource_type' => 'auto', 
+                ];
+
+                // Verificamos si el archivo es un VIDEO
+                // Si el tipo de archivo contiene la palabra "video" (ej: video/quicktime, video/avi)
+                if (str_contains($file->getMimeType(), 'video')) {
+                    // SOLO si es video, forzamos el formato MP4 para compatibilidad
+                    $opcionesCloudinary['format'] = 'mp4';
+                }
+                // Si es imagen, NO agregamos 'format', así se guarda como jpg/png normal.
+
+                // Subimos el archivo con las opciones calculadas
                 $uploadedFileUrl = cloudinary()->upload(
-                    $request->file('imagen')->getRealPath(),
-                    [
-                        'folder' => 'felicitaciones-ninel', 
-                        'resource_type' => 'auto', 
-                        'format' => 'mp4', // Convierte a MP4 para compatibilidad
-                    ]
+                    $file->getRealPath(),
+                    $opcionesCloudinary
                 )->getSecurePath(); 
                 
                 $datosParaGuardar['img'] = $uploadedFileUrl;
@@ -51,6 +63,7 @@ class CongratulationController extends Controller
                 Log::error('Error al subir a Cloudinary: ' . $e->getMessage());
             }
         }
+        // --- FIN LÓGICA CLOUDINARY ---
 
         // Crear el registro en la base de datos
         $c = Congratulation::create($datosParaGuardar);
