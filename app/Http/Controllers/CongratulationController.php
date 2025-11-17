@@ -12,16 +12,15 @@ use Illuminate\Support\Facades\Log;
 class CongratulationController extends Controller
 {
     /**
-     * Guarda la felicitación (foto o video) y envía el correo.
+     * Guarda la felicitación y envía el correo (MODO DEBUG).
      */
     public function store(Request $request){
         
-        // 1. Validación: Aceptamos imágenes Y videos
+        // 1. Validación: Aceptamos imágenes Y videos hasta 50MB (51200 KB)
         $request->validate([
             'name' => 'required|string|max:255',
             'identificador' => 'required|string|max:255',
             'description' => 'required|string',
-            // Acepta jpg, png, gif, webp Y TAMBIÉN mp4, mov, avi, webm. Máximo 50MB (51200 KB)
             'imagen' => 'nullable|file|mimes:jpeg,png,jpg,gif,webp,mp4,mov,avi,webm|max:51200',
         ]);
         
@@ -36,12 +35,13 @@ class CongratulationController extends Controller
         // --- INICIO DE LA LÓGICA DE CLOUDINARY ---
         if ($request->hasFile("imagen")) {
             try {
-                // Sube el archivo (foto o video) a Cloudinary
+                // Sube el archivo a Cloudinary y lo fuerza a MP4 si es video
                 $uploadedFileUrl = cloudinary()->upload(
                     $request->file('imagen')->getRealPath(),
                     [
                         'folder' => 'felicitaciones-ninel', 
-                        'resource_type' => 'auto', // <--- ¡CLAVE! Detecta si es video o imagen automáticamente
+                        'resource_type' => 'auto', 
+                        'format' => 'mp4', // Evita errores de reproducción
                     ]
                 )->getSecurePath(); 
                 
@@ -56,16 +56,17 @@ class CongratulationController extends Controller
         // Crear el registro en la base de datos
         $c = Congratulation::create($datosParaGuardar);
         
-        // --- INICIO DE LA LÓGICA DE CORREO ---
+        // --- TRAMPA PARA VER EL ERROR DE EMAIL ---
+        // Esto detendrá la página si el correo falla y te mostrará el error
         try {
             Mail::to('avilagarciabenjamin@gmail.com') 
                 ->send(new NuevaFelicitacionMail($c));
         } catch (\Exception $e) {
-            Log::error("Fallo al enviar correo: " . $e->getMessage());
+            // ¡ESTA LÍNEA TE DIRÁ QUÉ ESTÁ PASANDO!
+            dd("🛑 ERROR CRÍTICO DE EMAIL: " . $e->getMessage());
         }
-        // --- FIN DE LA LÓGICA DE CORREO ---
+        // -----------------------------------------
         
-        // Redirigir al usuario
         return redirect()->route('congratulations.index')->with('success', '¡Gracias, tu felicitación ha sido enviada!');
      }
      
