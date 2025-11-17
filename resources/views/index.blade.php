@@ -107,6 +107,12 @@
                                             @if ($c->img == null)
                                                 <img src="/assets/img/felicitaciones/no-img.jpeg"
                                                     class="testimonial-img" alt="">
+                                            @elseif (Str::endsWith($c->img,'.mp4', '.mov', 'webm', '.avi', '.gif', '.png', '.jpg', '.jpeg', '.webp'))
+                                                <div class="testimonial-img" style="width: 100%; max-width: 120px; margin:0 auto;">
+                                                    <video controls class="img-fluid" style="border-radius: 50%;">
+                                                        <source src="{{ $c->img }}" type="video/mp4">
+                                                        Video
+                                                    </video>
                                             @else
                                                 <img src="{{ $c->img }}"
                                                     class="testimonial-img" alt="">

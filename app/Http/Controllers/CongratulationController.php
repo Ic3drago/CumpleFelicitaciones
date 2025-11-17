@@ -12,40 +12,39 @@ use Illuminate\Support\Facades\Log;
 class CongratulationController extends Controller
 {
     /**
-     * Guarda la felicitación y envía el correo.
+     * Guarda la felicitación (foto o video) y envía el correo.
      */
     public function store(Request $request){
+        
+        // 1. Validación: Aceptamos imágenes Y videos
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'identificador' => 'required|string|max:255',
+            'description' => 'required|string',
+            // Acepta jpg, png, gif, webp Y TAMBIÉN mp4, mov, avi, webm. Máximo 20MB (20480 KB)
+            'imagen' => 'nullable|file|mimes:jpeg,png,jpg,gif,webp,mp4,mov,avi,webm|max:20480',
+        ]);
         
         $datosParaGuardar = [
             'name' => $request->name,
             'identificador' =>$request->identificador,
             'description' => $request->description,
-            
-            // --- ¡CAMBIO REALIZADO! ---
-            // Ahora se aprueba automáticamente
-            'status' => 2, 
-            // --- FIN DEL CAMBIO ---
-
-            'img' => null, // Inicia 'img' como nulo por si falla
+            'status' => 2, // Aprobado automáticamente
+            'img' => null, 
         ];
 
         // --- INICIO DE LA LÓGICA DE CLOUDINARY ---
         if ($request->hasFile("imagen")) {
             try {
-                // Sube el archivo de imagen directamente a Cloudinary
+                // Sube el archivo (foto o video) a Cloudinary
                 $uploadedFileUrl = cloudinary()->upload(
                     $request->file('imagen')->getRealPath(),
                     [
-                        'folder' => 'felicitaciones-ninel', // Carpeta en Cloudinary
-                        'transformation' => [
-                            'width' => 800,
-                            'height' => 800,
-                            'crop' => 'limit'
-                        ]
+                        'folder' => 'felicitaciones-ninel', 
+                        'resource_type' => 'auto', // <--- ¡CLAVE! Detecta si es video o imagen automáticamente
                     ]
-                )->getSecurePath(); // Obtiene la URL segura (https://...)
+                )->getSecurePath(); 
                 
-                // Guarda la URL de Cloudinary en la base de datos
                 $datosParaGuardar['img'] = $uploadedFileUrl;
 
             } catch (\Exception $e) {
