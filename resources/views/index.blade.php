@@ -104,19 +104,27 @@
                                 <div class="swiper-slide ">
                                     <div class="testimonial-wrap ">
                                         <div class="testimonial-item ">
+                                            
+                                            {{-- LÓGICA CORREGIDA PARA IMAGEN VS VIDEO --}}
                                             @if ($c->img == null)
                                                 <img src="/assets/img/felicitaciones/no-img.jpeg"
                                                     class="testimonial-img" alt="">
-                                            @elseif (Str::endsWith($c->img,'.mp4', '.mov', 'webm', '.avi', '.gif', '.png', '.jpg', '.jpeg', '.webp'))
-                                                <div class="testimonial-img" style="width: 100%; max-width: 120px; margin:0 auto;">
-                                                    <video controls class="img-fluid" style="border-radius: 50%;">
+
+                                            @elseif (Str::endsWith($c->img, ['.mp4', '.mov', '.webm', '.avi']))
+                                                {{-- Si es VIDEO: Estilo rectangular y sin recorte redondo --}}
+                                                <div class="testimonial-img" style="width: 100%; max-width: 300px; margin: 0 auto; border-radius: 10px; overflow: hidden;">
+                                                    <video controls class="img-fluid" style="width: 100%; display: block;">
                                                         <source src="{{ $c->img }}" type="video/mp4">
-                                                        Video
+                                                        Tu navegador no soporta videos.
                                                     </video>
+                                                </div>
+
                                             @else
+                                                {{-- Si es IMAGEN: Estilo normal redondo --}}
                                                 <img src="{{ $c->img }}"
                                                     class="testimonial-img" alt="">
                                             @endif
+                                            {{-- FIN DE LÓGICA CORREGIDA --}}
 
                                             <h3 class="mayus">{{ $c->name }}</h3>
                                             <h4>{{ $c->identificador }}</h4>
