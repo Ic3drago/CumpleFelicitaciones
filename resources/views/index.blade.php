@@ -112,12 +112,12 @@
 
                                             @elseif (Str::endsWith($c->img, ['.mp4', '.mov', '.webm', '.avi']))
                                                 {{-- Si es VIDEO: Estilo rectangular y sin recorte redondo --}}
-                                                <div class="testimonial-img" style="width: 100%; max-width: 300px; margin: 0 auto; border-radius: 10px; overflow: hidden;">
-                                                    <video controls class="img-fluid" style="width: 100%; display: block;">
+                                
+                                                    <video controls class="testimonial-img" style="width: 90px; max-height: 160px; border-radius: 8px; object-fit: cover;">
                                                         <source src="{{ $c->img }}" type="video/mp4">
                                                         Tu navegador no soporta videos.
                                                     </video>
-                                                </div>
+                                                
 
                                             @else
                                                 {{-- Si es IMAGEN: Estilo normal redondo --}}
