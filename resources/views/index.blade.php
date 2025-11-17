@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Feliz cumpleaños - Nombre</title>
+    <title>Feliz cumpleaños - Ninel</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -108,7 +108,7 @@
                                                 <img src="/assets/img/felicitaciones/no-img.jpeg"
                                                     class="testimonial-img" alt="">
                                             @else
-                                                <img src="/assets/img/felicitaciones/{{ $c->img }}"
+                                                <img src="{{ $c->img }}"
                                                     class="testimonial-img" alt="">
                                             @endif
 
